@@ -8,5 +8,5 @@ build:
       context: .
       docker:
         dockerfile: Dockerfile
-  local:
-    push: true
+  # local:
+  #   push: true
