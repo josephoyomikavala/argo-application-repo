@@ -24,10 +24,12 @@ steps:
       - -c
       - |
         # Cloud Build doesn't recover the .git file. Thus checkout the repo for this
-        git clone --branch $BRANCH_NAME https://github.com/josephoyomikavala/manifest-repo.git manifest-repo ;
+        git clone https://github.com/josephoyomikavala/manifest-repo.git manifest-repo ;
         # Copy only the .git file
-        mv manifest-repo/.git .
-        ./scripts/update-manifest.sh
+        # mv manifest-repo/.git .
+        cd manifest-repo/templates
+        envsubst < application-template.yaml > ../application.yaml
+        # ./scripts/update-manifest.sh
         git add . 
         git commit -m "updated Tag" && git push
 options:
