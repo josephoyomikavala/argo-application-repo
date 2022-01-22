@@ -16,9 +16,6 @@ steps:
       - "ENV=dev"
 
   - name: "gcr.io/cloud-builders/git"
-    args: ["clone", "https://github.com/josephoyomikavala/manifest-repo.git"]
-
-  - name: "gcr.io/cloud-builders/git"
     entrypoint: /bin/bash
     args:
       - -c
@@ -33,7 +30,7 @@ steps:
         cd manifest-repo/templates
         envsubst < application-template.yaml > ../application.yaml
         # ./scripts/update-manifest.sh
-        git add . 
-        git commit -m "updated Tag" && git push
+        cd ..
+        git add . &&  git commit -m "updated Tag" && git push
 options:
   logging: CLOUD_LOGGING_ONLY
