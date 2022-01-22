@@ -1,0 +1,12 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+metadata:
+  name: passport # module defining backend services
+build:
+  artifacts:
+    - image: 08134696399/argo-application-image
+      context: .
+      docker:
+        dockerfile: Dockerfile
+  local:
+    push: true

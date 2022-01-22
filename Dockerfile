@@ -5,4 +5,4 @@ COPY . .
 
 RUN npm i 
 EXPOSE 2010/tcp
-CMD [ "npm", "start" ]
+ENTRYPOINT  [ "npm", "start" ]

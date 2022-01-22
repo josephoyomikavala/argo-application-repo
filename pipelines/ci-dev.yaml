@@ -1,0 +1,32 @@
+steps:
+  # Skaffold Build With Artifacts
+  - name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
+    args: ["-c", "mkdir outputs"]
+
+  - name: "gcr.io/k8s-skaffold/skaffold:v1.35.0"
+    args:
+      [
+        "skaffold",
+        "build",
+        "--file-output=./outputs/output-gke_dev-$SHORT_SHA.json",
+      ]
+    env:
+      - "TAG=0.0.1.dev5-rc1"
+      - "ENV=dev"
+
+  - name: "gcr.io/cloud-builders/git"
+    args: ["clone", "https://github.com/josephoyomikavala/manifest-repo.git"]
+
+  - name: "gcr.io/cloud-builders/git"
+    entrypoint: /bin/bash
+    args:
+      - -c
+      - |
+        # Cloud Build doesn't recover the .git file. Thus checkout the repo for this
+        git clone --branch $BRANCH_NAME https://github.com/josephoyomikavala/manifest-repo.git manifest-repo ;
+        # Copy only the .git file
+        mv manifest-repo/.git .
+        ./scripts/update-manifest.sh
+        git add . 
+        git commit -m "updated Tag" && git push
