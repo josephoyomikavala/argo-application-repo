@@ -30,3 +30,5 @@ steps:
         ./scripts/update-manifest.sh
         git add . 
         git commit -m "updated Tag" && git push
+options:
+  logging: CLOUD_LOGGING_ONLY
