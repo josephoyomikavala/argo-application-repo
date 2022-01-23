@@ -3,6 +3,7 @@ steps:
   - name: "gcr.io/cloud-builders/gcloud"
     entrypoint: bash
     args: ["-c", "mkdir outputs"]
+
   - name: "gcr.io/cloud-builders/docker"
     entrypoint: "bash"
     args:
