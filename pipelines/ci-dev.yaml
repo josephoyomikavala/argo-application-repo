@@ -1,8 +1,11 @@
 steps:
   # Skaffold Build With Artifacts
-  - name: "gcr.io/cloud-builders/gcloud"
+  - name: "gcr.io/cloud-builders/docker"
     entrypoint: "bash"
-    args: ["-c", "mkdir outputs"]
+    args:
+      - "-c"
+      - |
+        echo $docker_password | docker login --username $docker_username --password-stdin
 
   - name: "gcr.io/k8s-skaffold/skaffold:v1.35.0"
     args:
@@ -20,11 +23,17 @@ steps:
     args: ["-c", "./scripts/git.sh"]
     secretEnv:
       - "github_access_token"
+    env:
+      - "TAG=0.0.1.dev5-rc1"
 
 availableSecrets:
   secretManager:
     - versionName: projects/kevala-replica/secrets/github_access_token/versions/latest
       env: "github_access_token"
+    - versionName: projects/kevala-replica/secrets/docker_password/versions/latest
+      env: "docker_password"
+    - versionName: projects/kevala-replica/secrets/docker_username/versions/latest
+      env: "docker_username"
 
 options:
   logging: CLOUD_LOGGING_ONLY
