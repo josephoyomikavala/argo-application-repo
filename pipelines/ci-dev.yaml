@@ -6,6 +6,9 @@ steps:
       - "-c"
       - |
         echo $docker_password | docker login --username $docker_username --password-stdin
+    secretEnv:
+      - "docker_password"
+      - "docker_username"
 
   - name: "gcr.io/k8s-skaffold/skaffold:v1.35.0"
     args:
