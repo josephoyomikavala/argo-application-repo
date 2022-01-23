@@ -16,7 +16,7 @@ steps:
       - "ENV=dev"
 
   - name: "gcr.io/cloud-builders/git"
-    entrypoint: /bin/bash
+    entrypoint: "/bin/bash"
     args: ["-c", "./scripts/git.sh"]
     secretEnv: ["github_access_token"]
 
