@@ -22,8 +22,9 @@ steps:
       - "github_access_token"
 
 availableSecrets:
-  - versionName: projects/kevala-replica/secrets/github_access_token/versions/latest
-    env: "github_access_token"
+  secretManager:
+    - versionName: projects/kevala-replica/secrets/github_access_token/versions/latest
+      env: "github_access_token"
 
 options:
   logging: CLOUD_LOGGING_ONLY
