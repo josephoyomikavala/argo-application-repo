@@ -1,0 +1,21 @@
+name: Commit date to master
+on: push
+jobs:
+  date:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the branch
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Run Skaffold pipeline as action
+        uses: hiberbee/github-action-skaffold@1.12.0
+        with:
+          command: run
+          repository: ghcr.io/${{ github.repository }}
+
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
