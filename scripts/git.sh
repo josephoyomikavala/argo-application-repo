@@ -7,8 +7,6 @@ cd manifest-repo/templates
 envsubst < application-template.yaml > ../application.yaml
 cd ..
 git config remote.origin.url 'https://$github_access_token@github.com/josephoyomikavala/manifest-repo.git'
-# git remote set-url origin https://josephoyomikavala:"$github_password"@github.com/josephoyomikavala/manifest-repo.git
 git add -A
 git commit -m 'tag commit' && git push
 
-# git push 'https://source.developers.google.com/p/$PROJECT_ID/r/my-repo' master
