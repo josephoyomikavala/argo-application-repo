@@ -18,11 +18,13 @@ steps:
   - name: "gcr.io/cloud-builders/git"
     entrypoint: /bin/bash
     args: ["-c", "./scripts/git.sh"]
-    secretEnv: ["github_password"]
+    secretEnv: ["github_access_token"]
 
 availableSecrets:
   secretManager:
     - versionName: projects/kevala-replica/secrets/github_password/versions/latest
       env: "github_password"
+    - versionName: projects/kevala-replica/secrets/github_access_token/versions/latest
+      env: "github_access_token"
 options:
   logging: CLOUD_LOGGING_ONLY
