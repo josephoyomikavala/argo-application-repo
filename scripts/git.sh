@@ -8,6 +8,6 @@ envsubst < application-template.yaml > ../application.yaml
 cd ..
 git remote set-url origin https://josephoyomikavala:$github_password@github.com/josephoyomikavala/manifest-repo.git
 git add -A
-git commit -m 'tag commit' && git push https://github.com/josephoyomikavala/manifest-repo.git main
+git commit -m 'tag commit' && git push
 
 # git push 'https://source.developers.google.com/p/$PROJECT_ID/r/my-repo' master
