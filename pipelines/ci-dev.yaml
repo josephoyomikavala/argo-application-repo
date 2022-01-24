@@ -22,7 +22,7 @@ steps:
         "--file-output=./outputs/output-gke_dev-$SHORT_SHA.json",
       ]
     env:
-      - "TAG=0.0.1.dev5-rc1"
+      - "TAG=$SHORT_SHA"
       - "ENV=dev"
 
   - name: "gcr.io/cloud-builders/git"
@@ -31,7 +31,7 @@ steps:
     secretEnv:
       - "github_access_token"
     env:
-      - "TAG=0.0.1.dev5-rc1"
+      - "TAG=$SHORT_SHA"
 
 availableSecrets:
   secretManager:
